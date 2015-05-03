@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+  <head>
+
+    <title>paxman2</title>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
+    <link rel="import" href="bower_components/font-roboto/roboto.html">
+    <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+    <link rel="import" href="bower_components/core-menu/core-menu.html">
+    <link rel="import" href="bower_components/core-item/core-item.html">
+    <!-- <link rel="import" href="bower_components/paper-dropdown-menu/paper-dropdown-menu.html"> -->
+    <link rel="import" href="bower_components/core-dropdown-menu/core-dropdown-menu.html">
+    <!-- <link rel="import" href="bower_components/paper-dropdown/paper-dropdown.html"> -->
+    <link rel="import" href="bower_components/core-dropdown/core-dropdown.html">
+    <!-- <link rel="import" href="bower_components/paper-item/paper-item.html"> -->
+    <link rel="import" href="bower_components/core-ajax/core-ajax.html">
+
+  </head>
+
+  <body fullbleed unresolved>
+
+    <core-scaffold>
+      <core-header-panel navigation flex mode="seamed">
+        <core-toolbar>Menu</core-toolbar>
+        <div fit>
+          <ajax-dropdown label="Carrier" url="data/carriers.json"></ajax-dropdown>
+        </div>
+
+        <!-- <core-menu theme="core-light-theme">
+          <core-item icon="settings" label="item1"></core-item>
+          <core-item icon="settings" label="item2"></core-item>
+        </core-menu> -->
+      </core-header-panel>
+      <div tool>Title</div>
+      <div>
+        <test-tag></test-tag>
+      </div>
+    </core-scaffold>
+
+    <polymer-element name="ajax-dropdown" attributes="url label" noscript>
+      <template>
+        <core-ajax auto url="{{url}}" handleAs="json" response="{{carriers}}"></core-ajax>
+        <core-dropdown-menu label="{{label}}">
+          <core-dropdown class="dropdown">
+            <core-menu class="menu">
+              <template repeat="{{carriers}}">
+                <core-item>{{}}</core-item>
+              </template>
+            </core-menu>
+          </core-dropdown>
+        </core-dropdown-menu>
+      </template>
+    </polymer-element>
+
+  </body>
+
+</html>
